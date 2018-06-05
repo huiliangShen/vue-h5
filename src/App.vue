@@ -1,23 +1,26 @@
 <template>
-  <div class="my-app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-};
+  import {Tabbar, TabbarItem, Group, Cell} from 'vux';
+  export default {
+    name: 'App',
+    components: {
+      Tabbar,
+      TabbarItem,
+      Group,
+      Cell
+    },
+    methods: {
+        goTo (num) {
+            this.$router.go('/health/health-info');
+        }
+    }
+  };
 </script>
 
-<style>
-.my-app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus" rel="stylesheet/stylus">
 </style>

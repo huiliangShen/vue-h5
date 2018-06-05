@@ -5,6 +5,9 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import VueRouter from 'vue-router';
+import './assets/stylus/css.styl';
+const FastClick = require('fastclick');
+FastClick.attach(document.body);
 
 Vue.config.productionTip = false;
 

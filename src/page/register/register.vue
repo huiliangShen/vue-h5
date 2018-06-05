@@ -1,11 +1,11 @@
 <template>
-  <div class="login-wrapper">
-    <input type="text" value="12312323">
+  <div class="register-wrapper">
+    12312323123123
   </div>
 </template>
 <script>
-  export default{};
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+
 </style>
