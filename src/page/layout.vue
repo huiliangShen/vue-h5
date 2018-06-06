@@ -2,7 +2,9 @@
   <div>
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
-    <router-view></router-view>
+    <transition :name="transitionName">
+      <router-view class="router"></router-view>
+    </transition>
     <tabbar>
       <tabbar-item link="/page/info">
         <img slot="icon" src="../assets/img/1.png">
@@ -33,6 +35,11 @@
       Group,
       Cell
     },
+    data () {
+      return {
+        transitionName: 'slide-left'
+      };
+    },
     methods: {
       goTo (num) {
         this.$router.go('/health/health-info');
@@ -41,4 +48,20 @@
   };
 </script>
 <style lang="stylus" scoped>
+  .router {
+    position absolute
+    top 0
+    width: 100%
+    transition: all .8s ease;
+  }
+  .slide-left-enter, .slide-right-leave-active {
+    opacity: 0;
+    transform: translate(100%, 0);
+  }
+
+  .slide-left-leave-active,
+  .slide-right-enter {
+    opacity: 0;
+    transform: translate(-100% 0);
+  }
 </style>
