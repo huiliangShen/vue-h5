@@ -8,6 +8,7 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import { sync } from 'vuex-router-sync';
 import AjaxPlugin from './api/ajax';
+import {setDocumentTitle} from './lib/tool'
 import './assets/stylus/css.styl';
 const FastClick = require('fastclick');
 FastClick.attach(document.body);
@@ -35,11 +36,15 @@ sync(store, router);
 
 router.beforeEach(function (to, from, next) {
   store.commit('updateLoadingStatus', {isLoading: true})
+
   next()
 })
 
 router.afterEach(function (to) {
   store.commit('updateLoadingStatus', {isLoading: false})
+  if(to.meta.title) {
+    setDocumentTitle(to.meta.title);
+  }
 })
 
 /* eslint-disable no-new */
@@ -47,9 +52,5 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  methods: {
-    getFun(){
-      this.$http.get
-    }
-  }
+  methods: {}
 }).$mount('#app');

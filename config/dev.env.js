@@ -5,8 +5,8 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   WX_CONFIG:{
-    appId: 'wx2d41a2b148345456',
-    secret: '324ef84d7d07e21827945f1327347341',
-    redirect_outh: 'http://wx.webui.info/wx/oauth-url'
+    appId: '"wx3b46a80c7fbd65b4"',
+    secret: '"848b7010f25c873dc65248e0a95af14a"',
+    redirect_outh: '"http://sunnyo.free.ngrok.cc/#/redirect"'
   }
 })
