@@ -8,8 +8,8 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import { sync } from 'vuex-router-sync';
 import AjaxPlugin from './api/ajax';
-import {setDocumentTitle} from './lib/tool'
-import './assets/stylus/css.styl';
+import {setDocumentTitle, checkDevice} from './lib/tool'
+import './assets/stylus/common.styl';
 const FastClick = require('fastclick');
 FastClick.attach(document.body);
 
@@ -17,7 +17,7 @@ Vue.use(AjaxPlugin);
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
-const vRouter = new VueRouter();
+/*const vRouter = new VueRouter();*/
 
 const store = new Vuex.Store({});// 这里你可能已经有其他 module
 
@@ -43,7 +43,7 @@ router.beforeEach(function (to, from, next) {
 router.afterEach(function (to) {
   store.commit('updateLoadingStatus', {isLoading: false})
   if(to.meta.title) {
-    setDocumentTitle(to.meta.title);
+    checkDevice().isWechat ? setDocumentTitle(to.meta.title) : document.title = to.meta.title;
   }
 })
 
