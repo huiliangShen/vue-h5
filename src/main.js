@@ -8,11 +8,18 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import { sync } from 'vuex-router-sync';
 import AjaxPlugin from './api/ajax';
+import VueLazyload from 'vue-lazyload';
 import {setDocumentTitle, checkDevice} from './lib/tool'
 import './assets/stylus/common.styl';
 const FastClick = require('fastclick');
 FastClick.attach(document.body);
 
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: "",// require('./assets/img/default.jpeg'),
+  loading: "",//require('./assets/img/loading.gif'),
+  attempt: 1
+});
 Vue.use(AjaxPlugin);
 Vue.use(Vuex);
 Vue.config.productionTip = false;

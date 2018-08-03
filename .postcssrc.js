@@ -22,6 +22,7 @@ module.exports = {
     "cssnano": {
       preset: "advanced",
       autoprefixer: false,
+      "postcss-reduce-idents": false, // plz，do not use it, it's will rewrite your animation name to 'a' !!! More detail: https://cssnano.co/guides/optimisations/
       "postcss-zindex": false // Warn!!! true: z-index will reset 1
     }
   }

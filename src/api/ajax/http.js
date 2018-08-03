@@ -60,15 +60,26 @@ export default function(url, json, method = 'post', timeout = 25000) {
       reject(`url or josn is null`);
       return;
     }
-    url = `${baseUri}${url}`;
-    console.log(url);
+    // 此处请求头内信息，请参照后端接口
     let req = {
       url: url,
       method: method,
       data: json,
       timeout: timeout,
-      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      params: json,
+      baseURL: baseUri
     };
+    // 区分get、post
+    if (method === 'post') {
+      req.headers = {'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'};
+      req.data = Qs.stringify(req.data);
+      // or
+      // req.headers = {'Accept': 'application/json', 'Content-Type': 'application/form-data;charset=UTF-8'};
+      delete req.params;
+    } else {
+      delete req.data;
+    }
 
     axios(req)
       .then((response) => {
